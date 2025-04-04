@@ -271,10 +271,10 @@ QRH.data    = {
   
   -- String lower, to make sure changes here keep strings
   -- in lowercase.
-  oaxiltso_name = string.lower("Oaxiltso"),
-  bahsei_name = string.lower("Bahsei"),
-  xalvakka_name = string.lower("Xalvakka"),
-  xalvakka_volatile_shell_name = string.lower("Volatile Shell"), -- Volatile Shell
+  oaxiltso_name = string.lower(GetString(QRGH_OAXILTSO_NAME)),
+  bahsei_name = string.lower(GetString(QRGH_BAHSEI_NAME)),
+  xalvakka_name = string.lower(GetString(QRGH_XALVAKKA_NAME)),
+  xalvakka_volatile_shell_name = string.lower(GetString(QRGH_VOLATILE_SHELL_NAME)), -- Volatile Shell
   xalvakka_volatile_timer = 80, -- Every 1:20, 3 copies are spawned.
 
   --default_color = { 1, 0.7, 0, 0.5 },
@@ -658,7 +658,7 @@ function QRH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   
   if result == ACTION_RESULT_BEGIN and abilityId == QRH.data.bahsei_cursedground then
     QRH.status.lastCursedGround = GetGameTimeSeconds()
-    CombatAlerts.Alert("", "Cursed Ground", 0xEE82EED9, SOUNDS.CHAMPION_POINTS_COMMITTED, 2000)
+    CombatAlerts.Alert("", GetString(QRGH_CURSED_GROUND_NAME), 0xEE82EED9, SOUNDS.CHAMPION_POINTS_COMMITTED, 2000)
   end
   
   if result == ACTION_RESULT_BEGIN and abilityId == QRH.data.bahsei_sickle then
@@ -1422,13 +1422,13 @@ function QRH.BossesChanged()
   QRH.status.is_xalvakka = false
   QRH.status.is_hm_boss = false
   
-  if string.match(bossName, QRH.data.oaxiltso_name) then
+  if bossName == QRH.data.oaxiltso_name then
     QRH.status.is_oaxiltso = true
   end
-  if string.match(bossName, QRH.data.bahsei_name) then
+  if bossName == QRH.data.bahsei_name then
     QRH.status.is_bahsei = true
   end
-  if string.match(bossName, QRH.data.xalvakka_name) then
+  if bossName == QRH.data.xalvakka_name then
     QRH.status.is_xalvakka = true
   end
   
@@ -1467,7 +1467,7 @@ function QRH.UpdateShield(unitTag, value, maxValue)
   
   local unitName = string.lower(GetUnitName(unitTag))
 
-  if string.match(unitName, QRH.data.xalvakka_volatile_shell_name) then
+  if unitName == QRH.data.xalvakka_volatile_shell_name then
     QRH.status.shellShield = value
   end
 end

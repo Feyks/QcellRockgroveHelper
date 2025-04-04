@@ -11,3 +11,6 @@ QcellRockgroveHelper.lua
 QcellRockgroveHelperMenu.lua
 QcellRockgroveHelperGroundIcons.lua
 QcellRockgroveHelper.xml
+
+locales/en.lua
+locales/$(language).lua
